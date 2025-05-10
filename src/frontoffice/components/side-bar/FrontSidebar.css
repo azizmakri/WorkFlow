@@ -1,0 +1,10 @@
+.nav-link:hover {
+  background-color: #f1f3f5 !important;
+  color: #343a40 !important;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.active-link {
+  background-color: #e0f0ff !important;
+  color: #007bff !important;
+}
