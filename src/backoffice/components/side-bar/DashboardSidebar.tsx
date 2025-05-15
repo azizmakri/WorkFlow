@@ -18,8 +18,8 @@ export default function DashboardSidebar() {
   const location = useLocation();
 
   const navLinks = [
-    { path: '/home', label: 'Home' },
     { path: '/dashboard', label: 'Tableau de bord' },
+    { path: '/dashboard/equipes', label: 'equipes' },
     { path: '/orders', label: 'Orders' },
     { path: '/products', label: 'Products' },
     { path: '/customers', label: 'Customers' },

@@ -1,7 +1,13 @@
-import { Card, CardContent, Typography, TextField, Button, Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import CreateEquipe from '../../components/create-equipe-card/CreateEquipe';
 
 export default function Equipes() {
   return (
-    <h1>hello Equipes</h1>
+    <Box p={3}>
+      <Typography variant="h4" gutterBottom>
+        Gérer les Équipes
+      </Typography>
+      <CreateEquipe />
+    </Box>
   );
 }

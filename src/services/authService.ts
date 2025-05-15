@@ -18,3 +18,8 @@ export const loginUser = async (credentials: JwtRequest) => {
   const response = await axios.post(`${API_URL}/authenticate`, credentials);
   return response.data; // Should return JwtResponse containing token and user info
 };
+
+export const getAllUsers = async (): Promise<User[]> => {
+  const response = await axios.get<User[]>(`${API_URL}/getallusers`);
+  return response.data;
+};
