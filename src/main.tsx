@@ -9,11 +9,11 @@ import LoginComponent from './sharedcomponents/login/loginComponent';
 import RegisterComponent from './sharedcomponents/signup/registerComponent';
 import NotFoundComponent from './sharedcomponents/NotFound/notFoundComponent';
 import HomePage from './frontoffice/pages/home/homePage.tsx';
-import CreateProject from './frontoffice/pages/createProject/createProject.tsx';
 import Dashboard from './backoffice/pages/Dashboard/dashboard.tsx';
 import Equipes from './backoffice/pages/Equipes/Equipes.tsx';
 import RedirectIfLoggedIn from './Utils/RedirectIfLoggedIn.tsx';
 import PrivateRoute from './routes/PrivateRoute.tsx';
+import Projets from './frontoffice/pages/Projets/Projets.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -42,14 +42,14 @@ createRoot(document.getElementById('root')!).render(
 
         {/* Member-protected routes */}
         <Route
-          path="/home"
+          path="/front-office"
           element={
             <PrivateRoute role="Membre">
               <HomePage />
             </PrivateRoute>
           }
         >
-          <Route path="create-project" element={<CreateProject />} />
+          <Route path="projets" element={<Projets />} />
         </Route>
 
         {/* Admin-protected routes */}

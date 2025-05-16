@@ -6,9 +6,18 @@ export default function NotFoundComponent() {
   const location = useLocation();
 
   const handleReturn = () => {
-    // Return to previous page if possible, otherwise fallback
-    const from = location.state?.from || '/home';
-    navigate(from);
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    const role = user?.role;
+
+    if (role === 'Membre') {
+      navigate('/front-office/projets');
+    } else if (role === 'Admin') {
+      navigate('/dashboard');
+    } else {
+      // Default fallback if role is unknown
+      const from = location.state?.from || '/home';
+      navigate(from);
+    }
   };
 
   return (
@@ -40,6 +49,10 @@ export default function NotFoundComponent() {
         <Typography variant="body2" color="text.secondary" mb={3}>
           Il semble que vous soyez perdu.
         </Typography>
+
+        <Button variant="contained" color="primary" onClick={handleReturn}>
+          Revenir à l'accueil
+        </Button>
       </Paper>
     </Box>
   );

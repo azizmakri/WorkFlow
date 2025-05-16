@@ -38,7 +38,7 @@ export default function LoginComponent() {
 
       // Redirect based on role
       if (role === 'Membre') {
-        navigate('/home');
+        navigate('/front-office/projets');
       } else if (role === 'Admin') {
         navigate('/dashboard');
       } else {

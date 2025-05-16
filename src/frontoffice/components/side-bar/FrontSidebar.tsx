@@ -17,7 +17,7 @@ export default function FrontSidebar() {
   const user = storedUser ? JSON.parse(storedUser) : null;
   const userName = user?.userName || 'User';
   const navLinks = [
-    { path: '/home', label: 'Home' },
+    { path: '/front-office/projets', label: 'Projets' },
     { path: '/dashboard', label: 'Dashboard' },
     { path: '/orders', label: 'Orders' },
     { path: '/products', label: 'Products' },
@@ -36,7 +36,7 @@ export default function FrontSidebar() {
       }}
     >
       <Link
-        to="/home"
+        to="/front-office/projets"
         className="d-flex align-items-center mb-4 text-dark text-decoration-none"
       >
         <img
