@@ -1,33 +1,10 @@
-.nav-link:hover {
-  background-color: #ba68c8 !important;
-  color: white !important;
-  transition: background-color 0.2s ease-in-out;
-}
-
 .active-link {
   background-color: #9C27B0 !important;
   color: white !important;
 }
 
-.sidebar-gradient {
-  background: linear-gradient(to bottom, #9C27B0, #BA68C8);
-  color: white;
-}
-
-.sidebar-logo-text {
-  color: white !important;
-}
-
-
-.dropdown-item:hover {
-  background-color: #ce93d8 !important;
-  color: white !important;
-}
-
 .nav-link:hover {
   background-color: #ba68c8 !important;
   color: white !important;
-  box-shadow: none !important;
-  outline: none !important;
-  text-decoration: none !important;
+  transition: background-color 0.2s ease-in-out;
 }

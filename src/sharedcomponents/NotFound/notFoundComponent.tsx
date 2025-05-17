@@ -38,8 +38,8 @@ export default function NotFoundComponent() {
           background: 'white',
         }}
       >
-        <Typography variant="h2" color="primary" fontWeight="bold" gutterBottom>
-          404 😢
+        <Typography variant="h2" color="secondary" fontWeight="bold" gutterBottom>
+          404 ⛓️‍💥​
         </Typography>
 
         <Typography variant="h6" color="text.secondary" gutterBottom>
@@ -50,7 +50,7 @@ export default function NotFoundComponent() {
           Il semble que vous soyez perdu.
         </Typography>
 
-        <Button variant="contained" color="primary" onClick={handleReturn}>
+        <Button variant="contained" color="secondary" onClick={handleReturn}>
           Revenir à l'accueil
         </Button>
       </Paper>

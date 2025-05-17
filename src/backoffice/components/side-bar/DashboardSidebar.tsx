@@ -1,6 +1,7 @@
 import { Link, useLocation,useNavigate } from 'react-router-dom';
 import './DashboardSidebar.css'; // optional: for external styling
 import userImage from '../../../assets/user.jpg'; // adjust path as needed
+import workflowImage from '../../../assets/workflow.png'; // adjust path as needed
 
 
 
@@ -40,22 +41,21 @@ export default function DashboardSidebar() {
         className="d-flex align-items-center mb-4 text-white text-decoration-none"
       >
         <img
-          src="https://img.icons8.com/fluency/48/dashboard-layout.png"
+          src={workflowImage}
           alt="Logo"
-          width="32"
+          width="38"
           height="32"
           className="me-2"
         />
-        <span className="fs-4 fw-semibold">Tableau de bord</span>
+        <span className="fs-4 fw-semibold">WorkFlow</span>
       </Link>
       <ul className="nav nav-pills flex-column mb-auto">
         {navLinks.map((link) => (
           <li className="nav-item" key={link.path}>
             <Link
               to={link.path}
-              className={`nav-link ${
-                location.pathname === link.path ? 'active bg-primary' : 'text-white'
-              }`}
+              className={`nav-link ${location.pathname === link.path ? 'active-link' : 'text-white'}`}
+
               style={{ borderRadius: '8px', marginBottom: '4px' }}
             >
               {link.label}

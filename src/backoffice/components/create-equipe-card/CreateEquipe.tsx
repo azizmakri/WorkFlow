@@ -87,7 +87,7 @@ export default function CreateEquipe() {
         sx={{ mt: 2 }}
       />
 
-      <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+      <Button type="submit" variant="contained" color="secondary" fullWidth sx={{ mt: 2 }}>
         Créer l'équipe
       </Button>
     </Box>
