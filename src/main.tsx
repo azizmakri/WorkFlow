@@ -14,6 +14,9 @@ import Equipes from './backoffice/pages/Equipes/Equipes.tsx';
 import RedirectIfLoggedIn from './Utils/RedirectIfLoggedIn.tsx';
 import PrivateRoute from './routes/PrivateRoute.tsx';
 import Projets from './frontoffice/pages/Projets/Projets.tsx';
+import ProjectById from './frontoffice/pages/DetaillesProjet/ProjetById.tsx';
+import EquipeById from './frontoffice/pages/DetaillesEquipe/EquipeById.tsx';
+import DetaillesTache from './frontoffice/pages/DetaillesTache/DetaillesTache.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -50,6 +53,9 @@ createRoot(document.getElementById('root')!).render(
           }
         >
           <Route path="projets" element={<Projets />} />
+          <Route path="equipe/:id" element={<EquipeById />} />
+          <Route path="projets/:id" element={<ProjectById />} />
+          <Route path="tache/:id" element={<DetaillesTache />} />
         </Route>
 
         {/* Admin-protected routes */}

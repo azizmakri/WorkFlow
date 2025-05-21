@@ -35,10 +35,7 @@ export default function FrontSidebar() {
   };
 
   const navLinks = [
-    { path: '/front-office/projets', label: 'Projets' },
-    { path: '/orders', label: 'Orders' },
-    { path: '/products', label: 'Products' },
-    { path: '/customers', label: 'Customers' },
+    { path: '/front-office/projets', label: 'Projets' }
   ];
 
   return (
@@ -102,8 +99,11 @@ export default function FrontSidebar() {
       <ul className="nav flex-column ms-3">
         {equipes.map((equipe) => (
           <li key={equipe.id} className="nav-item">
-            <span
-              className="nav-link text-dark"
+            <Link
+              to={`/front-office/equipe/${equipe.id}`}
+              className={`nav-link ${
+                location.pathname === `/front-office/equipe/${equipe.id}` ? 'active-link' : 'text-dark'
+              }`}
               style={{
                 borderRadius: '8px',
                 padding: '10px 15px',
@@ -112,9 +112,10 @@ export default function FrontSidebar() {
               }}
             >
               {equipe.nom}
-            </span>
+            </Link>
           </li>
         ))}
+
       </ul>
     )}
   </li>

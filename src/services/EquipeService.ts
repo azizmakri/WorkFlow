@@ -11,3 +11,8 @@ export const getEquipesByUser = async (userId:string): Promise<Equipe[]> => {
   const response = await axios.get<Equipe[]>(`${API_URL}/equipeByuser/${userId}`);
   return response.data;
 };
+
+export const getEquipeById = async (id:string): Promise<Equipe> => {
+  const response = await axios.get<Equipe>(`${API_URL}/equipeById/${id}`);
+  return response.data;
+};
