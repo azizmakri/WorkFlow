@@ -40,7 +40,7 @@ export default function LoginComponent() {
       if (role === 'Membre') {
         navigate('/front-office/projets');
       } else if (role === 'Admin') {
-        navigate('/dashboard');
+        navigate('/dashboard/analytiques');
       } else {
         Swal.fire('Rôle inconnu', 'Contactez un administrateur.', 'warning');
       }

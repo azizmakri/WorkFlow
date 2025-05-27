@@ -22,8 +22,30 @@ export const getProjectsByEquipe = async (equipeId:string): Promise<Project[]> =
 export const createProject = async (project: Project,equipeId:string): Promise<void> => {
   await axios.post(`${API_URL}/addProjectAndAssignEquipe/${equipeId}`, project);
 };
+export const updateProject = async (project: Project,projectId:string): Promise<void> => {
+  await axios.put(`${API_URL}/${projectId}`, project);
+};
 
 export const deleteProjet = async (idProjet: string) => {
   const response = await axios.delete(`${API_URL}/deleteProject/${idProjet}`);
+  return response.data;
+};
+
+export const getTotalNumberOfProjects = async (): Promise<number> => {
+  const response = await axios.get<number>(`${API_URL}/totalNumberOfProjects`);
+  return response.data;
+};
+
+
+export const getNumberOfEnAttenteProjects = async (): Promise<number> => {
+  const response = await axios.get<number>(`${API_URL}/numberOfEnAttenteProjects`);
+  return response.data;
+};
+export const getNumberOfEnCoursProjects = async (): Promise<number> => {
+  const response = await axios.get<number>(`${API_URL}/numberOfEnCoursProjects`);
+  return response.data;
+};
+export const getNumberOfTermineProjects = async (): Promise<number> => {
+  const response = await axios.get<number>(`${API_URL}/numberOfTermineProjects`);
   return response.data;
 };

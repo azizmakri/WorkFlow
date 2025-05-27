@@ -14,15 +14,18 @@ import type { Project } from '../../../models/Project';
 import { getProjectById, deleteProjet } from '../../../services/ProjectService';
 import { getEquipeById } from '../../../services/EquipeService';
 import BoardSection from '../../components/BoardSection/BoardSection';
+import UpdateProjectDialog from '../../components/EditProjectDialog/UpdateProjectDialog';
+import AnalyticsSection from '../../components/AnalyticsSection/AnalyticsSection';
 
 export default function ProjectById() {
+  const [openUpdateDialog, setOpenUpdateDialog] = useState(false);
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [project, setProject] = useState<Project | null>(null);
   const [equipeName, setEquipeName] = useState<string>('');
   const [activeTab, setActiveTab] = useState<'board' | 'analytics'>('board');
-
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [openDialog, setOpenDialog] = useState(false);
   const open = Boolean(anchorEl);
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -33,29 +36,6 @@ export default function ProjectById() {
     setAnchorEl(null);
   };
 
-  const handleDelete = async () => {
-    if (id) {
-      await deleteProjet(id);
-      navigate('/front-office/projets');
-    }
-  };
-
-  useEffect(() => {
-    const fetchProjectAndEquipe = async () => {
-      if (id) {
-        const proj = await getProjectById(id);
-        setProject(proj);
-        if (proj.equipeId) {
-          const equipe = await getEquipeById(proj.equipeId);
-          setEquipeName(equipe.nom);
-        }
-      }
-    };
-    fetchProjectAndEquipe();
-  }, [id]);
-
-  const [openDialog, setOpenDialog] = useState(false);
-
   const handleConfirmDelete = async () => {
     if (id) {
       await deleteProjet(id);
@@ -64,9 +44,29 @@ export default function ProjectById() {
     }
   };
 
+  const fetchProjectAndEquipe = async () => {
+    if (id) {
+      const proj = await getProjectById(id);
+      setProject(proj);
+      if (proj.equipeId) {
+        const equipe = await getEquipeById(proj.equipeId);
+        setEquipeName(equipe.nom);
+      }
+    }
+  };
+
+  useEffect(() => {
+    fetchProjectAndEquipe();
+  }, [id]);
+
   return (
     <div style={{ padding: 20 }}>
-      <p className="equipe-titre">{project?.titre ? `Projet : ${project.titre}` : "Chargement de l'équipe..."}</p>
+      <p className="equipe-titre">
+        {project?.titre ? `Projet : ${project.titre}` : 'Chargement du titre...'}
+      </p>
+      <p className="equipe-description">
+        {project?.description ?? 'Chargement de la description...'}
+      </p>
 
       {/* Navigation Tabs */}
       <div className="tabs" style={{ display: 'flex', alignItems: 'center' }}>
@@ -83,17 +83,15 @@ export default function ProjectById() {
           Analytique
         </button>
 
-        {/* Gear dropdown */}
+        {/* Gear Dropdown */}
         <IconButton
           onClick={handleMenuOpen}
           sx={{
-            position: 'fixed',
+            position: 'sticky',
             right: '50px',
             color: '#333',
             backgroundColor: '#f5f5f5',
-            '&:hover': {
-              backgroundColor: '#e0e0e0',
-            },
+            '&:hover': { backgroundColor: '#e0e0e0' },
           }}
         >
           <Settings />
@@ -111,7 +109,12 @@ export default function ProjectById() {
             <Typography color="red">Supprimer</Typography>
           </MenuItem>
 
-          <MenuItem onClick={() => { handleMenuClose(); /* logic later */ }}>
+          <MenuItem
+            onClick={() => {
+              setOpenUpdateDialog(true);
+              handleMenuClose();
+            }}
+          >
             <ListItemIcon>
               <Edit fontSize="small" />
             </ListItemIcon>
@@ -120,9 +123,11 @@ export default function ProjectById() {
         </Menu>
       </div>
 
-      {/* Conditional Content */}
+      {/* Board or Analytics View */}
       {activeTab === 'board' && <BoardSection />}
-      {activeTab === 'analytics' && <p>Composant Analytique à venir...</p>}
+      {activeTab === 'analytics' && <AnalyticsSection />}
+
+      {/* Delete Confirmation Dialog */}
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)}>
         <div style={{ padding: '20px 24px', minWidth: '320px' }}>
           <Typography variant="h6" gutterBottom>
@@ -131,8 +136,13 @@ export default function ProjectById() {
           <Typography variant="body1" gutterBottom>
             Êtes-vous sûr de vouloir supprimer ce projet ?
           </Typography>
-
-          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 20 }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              marginTop: 20,
+            }}
+          >
             <button
               onClick={() => setOpenDialog(false)}
               style={{
@@ -163,6 +173,18 @@ export default function ProjectById() {
         </div>
       </Dialog>
 
+      {/* Update Project Dialog */}
+      {project && id && (
+        <UpdateProjectDialog
+          open={openUpdateDialog}
+          onClose={() => {
+            setOpenUpdateDialog(false);
+            fetchProjectAndEquipe(); // Refresh project after update
+          }}
+          initialProject={project}
+          projectId={id}
+        />
+      )}
     </div>
   );
 }

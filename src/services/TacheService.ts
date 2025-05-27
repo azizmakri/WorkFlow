@@ -31,3 +31,18 @@ export const getTacheById = async (id:string): Promise<Tache> => {
   const response = await axios.get<Tache>(`${API_URL}/getTacheById/${id}`);
   return response.data;
 };
+
+export const getNumberOfTermineTachesByProject = async (projetId:string): Promise<number> => {
+  const response = await axios.get<number>(`${API_URL}/nbreTermineTachesByProject/${projetId}`);
+  return response.data;
+};
+
+export const getNumberOfEnCoursTachesByProject = async (projetId:string): Promise<number> => {
+  const response = await axios.get<number>(`${API_URL}/nbreEnCoursTachesByProject/${projetId}`);
+  return response.data;
+};
+
+export const getTotalNumberOfTachesByProject = async (projetId:string): Promise<number> => {
+  const response = await axios.get<number>(`${API_URL}/nbreTotTachesByProject/${projetId}`);
+  return response.data;
+};

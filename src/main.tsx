@@ -17,6 +17,8 @@ import Projets from './frontoffice/pages/Projets/Projets.tsx';
 import ProjectById from './frontoffice/pages/DetaillesProjet/ProjetById.tsx';
 import EquipeById from './frontoffice/pages/DetaillesEquipe/EquipeById.tsx';
 import DetaillesTache from './frontoffice/pages/DetaillesTache/DetaillesTache.tsx';
+import EquipeDetailles from './backoffice/pages/EquipeDetailles/EquipeDetailles.tsx';
+import Analytiques from './backoffice/pages/Analytiques/analytiques.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -68,6 +70,8 @@ createRoot(document.getElementById('root')!).render(
           }
         >
           <Route path="equipes" element={<Equipes />} />
+          <Route path="equipe/:id" element={<EquipeDetailles />} />
+          <Route path="analytiques" element={<Analytiques />} />
         </Route>
 
         <Route path="*" element={<NotFoundComponent />} />

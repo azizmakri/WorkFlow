@@ -19,11 +19,8 @@ export default function DashboardSidebar() {
   const location = useLocation();
 
   const navLinks = [
-    { path: '/dashboard', label: 'Tableau de bord' },
+    { path: '/dashboard/analytiques', label: 'Tableau de bord' },
     { path: '/dashboard/equipes', label: 'equipes' },
-    { path: '/orders', label: 'Orders' },
-    { path: '/products', label: 'Products' },
-    { path: '/customers', label: 'Customers' },
   ];
 
   return (
@@ -86,10 +83,6 @@ export default function DashboardSidebar() {
           className="dropdown-menu dropdown-menu-dark text-small shadow"
           aria-labelledby="dropdownUser1"
         >
-          <li><a className="dropdown-item" href="#">New project...</a></li>
-          <li><a className="dropdown-item" href="#">Settings</a></li>
-          <li><a className="dropdown-item" href="#">Profile</a></li>
-          <li><hr className="dropdown-divider" /></li>
           <li>
             <button className="dropdown-item" onClick={logout}>
               se déconnecter

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+// components/create-equipe-card/CreateEquipe.tsx
 import {
   TextField,
   Button,
@@ -7,11 +7,16 @@ import {
   Autocomplete,
   Checkbox,
 } from '@mui/material';
+import { useEffect, useState } from 'react';
 import type { User } from '../../../models/User';
 import { getAllUsers } from '../../../services/authService';
 import { createEquipe } from '../../../services/EquipeService';
 
-export default function CreateEquipe() {
+interface Props {
+  onEquipeCreated?: () => void;
+}
+
+export default function CreateEquipe({ onEquipeCreated }: Props) {
   const [nom, setNom] = useState('');
   const [userIds, setUserIds] = useState<string[]>([]);
   const [users, setUsers] = useState<User[]>([]);
@@ -29,6 +34,7 @@ export default function CreateEquipe() {
     await createEquipe({ nom, userIds });
     setNom('');
     setUserIds([]);
+    onEquipeCreated?.(); // reload list
   };
 
   return (
@@ -69,18 +75,17 @@ export default function CreateEquipe() {
           setUserIds(selectedUsers.map((user) => user.userName));
         }}
         renderOption={(props, option) => {
-        const { key, ...rest } = props;
-        return (
+          const { key, ...rest } = props;
+          return (
             <li key={key} {...rest}>
-            <Checkbox
+              <Checkbox
                 style={{ marginRight: 8 }}
-                checked={userIds.indexOf(option.userName) !== -1}
-            />
-            {option.userFirstName} {option.userLastName}
+                checked={userIds.includes(option.userName)}
+              />
+              {option.userFirstName} {option.userLastName}
             </li>
-        );
+          );
         }}
-
         renderInput={(params) => (
           <TextField {...params} label="Utilisateurs" placeholder="Rechercher par nom d'utilisateur" />
         )}

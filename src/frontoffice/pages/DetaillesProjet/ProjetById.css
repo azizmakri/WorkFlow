@@ -4,6 +4,12 @@
     font-size: x-large;
     margin-bottom: 20px;
 }
+.equipe-description{
+    color: rgb(99, 99, 99);
+    font-weight: 600;
+    font-size: medium;
+    margin-bottom: 20px;
+}
 
 .tabs {
   display: flex;
